@@ -2,58 +2,74 @@ package modelo;
 
 import java.util.ArrayList;
 
+import modelo.Aluno.Aluno;
+import modelo.Professor.Professor;
+
 public class Disciplina {
 	
 	private String nome;
-	private String codigodaDisciplina;
-	Professor professor;
+	private String codigo;
+	private Professor professor;
+	private ArrayList<Aluno> alunos;
 	private int sala;
+	private int cargaHoraria;
 	private String horario;
+	private int custo;
 	
 	
+	public Disciplina(String nome, String codigo, Professor professor, ArrayList<Aluno> alunos, int sala,
+			int cargaHoraria, String horario) {
+		super();
+		this.nome = nome;
+		this.codigo = codigo;
+		this.professor = professor;
+		this.alunos = alunos;
+		this.sala = sala;
+		this.cargaHoraria = cargaHoraria;
+		this.horario = horario;
+		
+		setupCusto();
+	}
+	
+	private void setupCusto() {
+		switch (professor.getCategoria()) {
+		case Especialista:
+			this.custo = 25 * this.cargaHoraria;
+			break;
+		case Mestre:
+			this.custo = 35 * this.cargaHoraria;
+			break;
+		case Doutor:
+			this.custo = 45 * this.cargaHoraria;
+			break;
+		default:
+			break;
+		}
+	}
 	
 	public String getNome() {
 		return nome;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getCodigodaDisciplina() {
-		return codigodaDisciplina;
-	}
-	public void setCodigodaDisciplina(String codigodaDisciplina) {
-		this.codigodaDisciplina = codigodaDisciplina;
+	public String getCodigo() {
+		return codigo;
 	}
 	public Professor getProfessor() {
 		return professor;
 	}
-	public void setProfessor(Professor professor) {
-		this.professor = professor;
+	public ArrayList<Aluno> getAlunos() {
+		return alunos;
 	}
 	public int getSala() {
 		return sala;
 	}
-	public void setSala(int sala) {
-		this.sala = sala;
+	public int getCargaHoraria() {
+		return cargaHoraria;
 	}
 	public String getHorario() {
 		return horario;
 	}
-	public void setHorario(String horario) {
-		this.horario = horario;
+	public int getCusto() {
+		return custo;
 	}
 	
-	static ArrayList<Disciplina> listaDisciplina = new ArrayList();
-
-	public ArrayList<Disciplina> getlistaDiscipliba() {
-		return this.listaDisciplina;
-	}
-	
-	ArrayList<Aluno> listaAluMatri = new ArrayList();
-	
-	public ArrayList<Aluno> getlistaAluMatri(){
-		return this.listaAluMatri;
-	}
-	
-
 }
